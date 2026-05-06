@@ -131,12 +131,16 @@ class StudentController extends BaseController {
         
         if ($type === 'regional' && Auth::check()) {
             $userRegion = Auth::user()['region'] ?? '';
-            $leaders = array_filter($leaders, fn($u) => ($u['region'] ?? '') === $userRegion);
+            $leaders = array_filter($leaders, function($u) use ($userRegion) {
+                return ($u['region'] ?? '') === $userRegion;
+            });
         }
         
         if ($type === 'level' && Auth::check()) {
             $userLevel = Auth::user()['school_level_id'] ?? 0;
-            $leaders = array_filter($leaders, fn($u) => ($u['school_level_id'] ?? 0) == $userLevel);
+            $leaders = array_filter($leaders, function($u) use ($userLevel) {
+                return ($u['school_level_id'] ?? 0) == $userLevel;
+            });
         }
         
         $this->view('student/leaderboard', [

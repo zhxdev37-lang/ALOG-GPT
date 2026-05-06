@@ -105,15 +105,15 @@ class BaseModel {
     }
     
     protected function castValue($value, string $type) {
-        return match($type) {
-            'int' => (int)$value,
-            'float' => (float)$value,
-            'bool' => (bool)$value,
-            'array' => json_decode($value, true),
-            'json' => json_decode($value, true),
-            'datetime' => $value ? new DateTime($value) : null,
-            default => $value
-        };
+        switch ($type) {
+            case 'int': return (int)$value;
+            case 'float': return (float)$value;
+            case 'bool': return (bool)$value;
+            case 'array': return json_decode($value, true);
+            case 'json': return json_decode($value, true);
+            case 'datetime': return $value ? new DateTime($value) : null;
+            default: return $value;
+        }
     }
     
     public function raw(string $sql, array $params = []): array {

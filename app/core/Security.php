@@ -88,11 +88,7 @@ class Security {
     
     // Password hashing
     public static function hashPassword(string $password): string {
-        return password_hash($password, PASSWORD_ARGON2ID, [
-            'memory_cost' => 65536,
-            'time_cost' => 4,
-            'threads' => 3
-        ]);
+        return password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
     }
     
     public static function verifyPassword(string $password, string $hash): bool {

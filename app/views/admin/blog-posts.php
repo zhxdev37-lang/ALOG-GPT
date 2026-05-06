@@ -33,7 +33,7 @@
                             <td class="fw-semibold"><?= e($p['title']) ?></td>
                             <td class="small"><?= e($p['category_name'] ?? '-') ?></td>
                             <td class="small"><?= e(($p['first_name'] ?? '') . ' ' . ($p['last_name'] ?? '')) ?></td>
-                            <td><span class="badge bg-<?= match($p['status']){'published'=>'success','draft'=>'warning','archived'=>'secondary',default=>'secondary'} ?>"><?= e($p['status']) ?></span></td>
+                            <td><span class="badge bg-<?= (['published'=>'success','draft'=>'warning','archived'=>'secondary'][$p['status']] ?? 'secondary') ?>"><?= e($p['status']) ?></span></td>
                             <td><?= number_format($p['views_count'] ?? 0) ?></td>
                             <td class="small text-muted"><?= timeAgo($p['created_at']) ?></td>
                             <td>

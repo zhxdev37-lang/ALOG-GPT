@@ -8,7 +8,10 @@ class Session {
         if (session_status() === PHP_SESSION_NONE) {
             ini_set('session.cookie_httponly', '1');
             ini_set('session.cookie_secure', isset($_SERVER['HTTPS']) ? '1' : '0');
-            ini_set('session.cookie_samesite', 'Strict');
+            // SameSite only available in PHP 7.3+
+            if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
+                ini_set('session.cookie_samesite', 'Lax');
+            }
             ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
             session_name(SESSION_NAME);
             session_start();

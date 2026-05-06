@@ -49,7 +49,7 @@
                                     <td><?= formatDate($sub['created_at']) ?></td>
                                     <td><?= e($sub['plan_name']) ?></td>
                                     <td><?= formatPrice((float)$sub['amount_paid']) ?></td>
-                                    <td><span class="badge bg-<?= match($sub['status']){'active'=>'success','expired'=>'secondary','pending'=>'warning','cancelled'=>'danger',default=>'secondary'} ?>"><?= e($sub['status']) ?></span></td>
+                                    <td><span class="badge bg-<?= (['active'=>'success','expired'=>'secondary','pending'=>'warning','cancelled'=>'danger'][$sub['status']] ?? 'secondary') ?>"><?= e($sub['status']) ?></span></td>
                                     <td class="text-uppercase small"><?= e($sub['payment_method']) ?></td>
                                 </tr>
                                 <?php endforeach; ?>

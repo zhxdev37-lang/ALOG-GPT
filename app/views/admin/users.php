@@ -38,7 +38,7 @@
                             <td class="small"><?= e($u['level_name'] ?? '-') ?> <?= $u['filiere_name'] ? '- ' . e($u['filiere_name']) : '' ?></td>
                             <td><span class="badge bg-warning text-dark"><?= number_format($u['xp_total'] ?? 0) ?></span></td>
                             <td><span class="badge bg-primary bg-opacity-10 text-primary"><?= e($u['plan_name'] ?? 'Free') ?></span></td>
-                            <td><span class="badge bg-<?= match($u['status']){'active'=>'success','suspended'=>'danger','pending'=>'warning',default=>'secondary'} ?>"><?= e($u['status']) ?></span></td>
+                            <td><span class="badge bg-<?= (['active'=>'success','suspended'=>'danger','pending'=>'warning'][$u['status']] ?? 'secondary') ?>"><?= e($u['status']) ?></span></td>
                             <td class="small text-muted"><?= timeAgo($u['created_at']) ?></td>
                             <td>
                                 <a href="<?= url('/admin/utilisateurs/' . $u['id']) ?>" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></a>

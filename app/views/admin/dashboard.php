@@ -161,7 +161,7 @@
                         <?php foreach ($recentLogs as $log): ?>
                         <tr>
                             <td><?= e(($log['first_name'] ?? '') . ' ' . ($log['last_name'] ?? '')) ?></td>
-                            <td><span class="badge bg-<?= match($log['action']){'create'=>'success','update'=>'primary','delete'=>'danger',default=>'secondary'} ?>"><?= e($log['action']) ?></span></td>
+                            <td><span class="badge bg-<?= (['create'=>'success','update'=>'primary','delete'=>'danger'][$log['action']] ?? 'secondary') ?>"><?= e($log['action']) ?></span></td>
                             <td><?= e($log['entity_type']) ?> #<?= $log['entity_id'] ?? '-' ?></td>
                             <td class="small text-muted"><?= timeAgo($log['created_at']) ?></td>
                             <td class="small text-muted"><?= e($log['ip_address']) ?></td>

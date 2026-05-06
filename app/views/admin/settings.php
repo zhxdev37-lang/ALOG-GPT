@@ -10,7 +10,7 @@
             <div class="list-group list-group-flush rounded-4 border shadow-sm">
                 <?php foreach ($groups as $g): ?>
                 <a href="<?= url('/admin/parametres?group=' . $g) ?>" class="list-group-item list-group-item-action <?= $currentGroup === $g ? 'active' : '' ?>">
-                    <i class="bi bi-<?= match($g){'general'=>'gear','system'=>'cpu','security'=>'shield-lock','payment'=>'credit-card','seo'=>'search','analytics'=>'bar-chart','social'=>'share',default=>'circle'} ?> me-2"></i>
+                    <i class="bi bi-<?= (['general'=>'gear','system'=>'cpu','security'=>'shield-lock','payment'=>'credit-card','seo'=>'search','analytics'=>'bar-chart','social'=>'share'][$g] ?? 'circle') ?> me-2"></i>
                     <?= ucfirst($g) ?>
                 </a>
                 <?php endforeach; ?>

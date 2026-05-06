@@ -1,15 +1,36 @@
 <?php
 /**
  * ALOG ACADEMY - Configuration Principale
- * Optimisé pour hébergement mutualisé gratuit
+ * Optimise pour hebergement mutualise gratuit (AeOnFree/htdocs)
  */
+
+// PHP 7.4+ polyfill for str_starts_with if not available
+if (!function_exists('str_starts_with')) {
+    function str_starts_with(string $haystack, string $needle): bool {
+        return $needle === '' || strpos($haystack, $needle) === 0;
+    }
+}
+
+// PHP 7.4+ polyfill for str_ends_with if not available
+if (!function_exists('str_ends_with')) {
+    function str_ends_with(string $haystack, string $needle): bool {
+        return $needle === '' || substr($haystack, -strlen($needle)) === $needle;
+    }
+}
+
+// PHP 7.4+ polyfill for str_contains if not available
+if (!function_exists('str_contains')) {
+    function str_contains(string $haystack, string $needle): bool {
+        return $needle === '' || strpos($haystack, $needle) !== false;
+    }
+}
 
 define('APP_NAME', 'ALOG Academy');
 define('APP_VERSION', '1.0.0');
 define('APP_URL', (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST']);
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
-define('PUBLIC_PATH', BASE_PATH . '/public');
+define('PUBLIC_PATH', BASE_PATH);
 define('STORAGE_PATH', BASE_PATH . '/storage');
 define('CONFIG_PATH', BASE_PATH . '/config');
 define('ROUTES_PATH', BASE_PATH . '/routes');

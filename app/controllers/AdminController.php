@@ -569,13 +569,13 @@ class AdminController extends BaseController {
         $this->requirePermission('analytics.read');
         
         $period = Security::input('period', 'GET') ?: '30';
-        $interval = match($period) {
-            '7' => '7 DAY',
-            '30' => '30 DAY',
-            '90' => '90 DAY',
-            '365' => '1 YEAR',
-            default => '30 DAY'
-        };
+        switch ($period) {
+            case '7': $interval = '7 DAY'; break;
+            case '30': $interval = '30 DAY'; break;
+            case '90': $interval = '90 DAY'; break;
+            case '365': $interval = '1 YEAR'; break;
+            default: $interval = '30 DAY';
+        }
         
         $stats = [
             'new_users' => Database::fetch("SELECT COUNT(*) as c FROM users WHERE role_id = 3 AND created_at >= DATE_SUB(NOW(), INTERVAL {$interval})")['c'] ?? 0,

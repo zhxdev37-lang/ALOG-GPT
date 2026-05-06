@@ -74,8 +74,10 @@ class LessonController extends BaseController {
         }
         
         if ($isLocked && !$isUnlockedByXp) {
+            $subject = (new Subject())->find($lesson['subject_id']);
+            $subjectSlug = $subject ? $subject['slug'] : '';
             Session::flash('errors', ['global' => 'Cette leçon nécessite un abonnement supérieur ou des XP pour être débloquée.']);
-            Router::redirect('/cours/' . (new Subject())->find($lesson['subject_id'])['slug']);
+            Router::redirect('/cours/' . $subjectSlug);
         }
         
         $progress = (new LessonProgress())->getForUser((int)$user['id'], (int)$lesson['id']);
