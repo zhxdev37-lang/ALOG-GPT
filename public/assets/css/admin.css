@@ -1,0 +1,56 @@
+/**
+ * Admin Stylesheet
+ */
+.admin-body { background: #f4f6f9; }
+.admin-sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: 280px; background: #ffffff; border-right: 1px solid #e9ecef;
+  z-index: 1030; overflow-y: auto; display: flex; flex-direction: column;
+  transition: transform 0.3s ease;
+}
+.admin-sidebar .sidebar-brand { padding: 1.25rem; border-bottom: 1px solid #e9ecef; }
+.admin-sidebar .sidebar-brand .brand-icon-sm {
+  width: 32px; height: 32px; background: #dc3545; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.admin-sidebar .sidebar-nav { padding: 0.75rem 0; flex: 1; }
+.admin-sidebar .sidebar-link {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.625rem 1.25rem; color: #555;
+  text-decoration: none; transition: all 0.2s; font-size: 0.9rem;
+}
+.admin-sidebar .sidebar-link:hover, .admin-sidebar .sidebar-link.active {
+  color: #0975e4; background: rgba(9,117,228,0.06);
+  border-right: 3px solid #0975e4;
+}
+.admin-sidebar .sidebar-link i { font-size: 1rem; width: 22px; text-align: center; }
+.admin-sidebar .sidebar-divider {
+  padding: 0.5rem 1.25rem; font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: #999; font-weight: 600; margin-top: 0.5rem;
+}
+.admin-sidebar .sidebar-footer { padding: 0.75rem 0; border-top: 1px solid #e9ecef; }
+
+.admin-wrapper { margin-left: 280px; min-height: 100vh; display: flex; flex-direction: column; }
+.admin-header {
+  position: sticky; top: 0; z-index: 1020;
+  background: white; padding: 0.875rem 1.5rem;
+  border-bottom: 1px solid #e9ecef; display: flex; align-items: center;
+}
+.admin-main { flex: 1; padding: 1.5rem; }
+
+.admin-stat-card { transition: all 0.3s; }
+.admin-stat-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.admin-stat-card .stat-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+
+.chart-container .bar { transition: height 0.5s ease; min-height: 4px; }
+
+.table th { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; border-top: none; }
+.table td { vertical-align: middle; font-size: 0.875rem; }
+.badge { font-weight: 500; }
+
+@media (max-width: 991.98px) {
+  .admin-sidebar { transform: translateX(-100%); }
+  .admin-sidebar.show { transform: translateX(0); }
+  .admin-wrapper { margin-left: 0; }
+}
