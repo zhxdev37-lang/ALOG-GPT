@@ -5,12 +5,15 @@ RewriteBase /
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-# Ne pas reecrire les fichiers et dossiers existants
+# Exclure les dossiers et fichiers réels de la réécriture
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
+# Exclure explicitement les assets (pour serveur mal configure)
+RewriteRule ^(assets|uploads|storage|public)(/.*)?$ - [L]
+
 # Tout rediriger vers index.php
-RewriteRule ^(.*)$ index.php [QSA,L]
+RewriteRule ^(.*)$ index.php?path=$1 [QSA,L]
 
 # Securite
 Options -Indexes

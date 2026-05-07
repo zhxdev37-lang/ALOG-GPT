@@ -12,7 +12,19 @@ function url(string $path = ''): string {
 }
 
 function asset(string $path): string {
-    return APP_URL . '/assets/' . ltrim($path, '/');
+    $path = ltrim($path, '/');
+    // Konstruisez l'URL absolue de l'asset
+    $assetUrl = APP_URL . '/assets/' . $path;
+    
+    // Ajoutez un cache buster pour forcer le rechargement
+    $fullPath = PUBLIC_PATH . '/assets/' . $path;
+    if (file_exists($fullPath)) {
+        // Utilisez le mtime comme cache buster
+        $mtime = filemtime($fullPath);
+        $assetUrl .= '?v=' . $mtime;
+    }
+    
+    return $assetUrl;
 }
 
 function avatar(string $avatar): string {
